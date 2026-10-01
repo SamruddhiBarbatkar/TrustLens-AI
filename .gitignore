@@ -1,0 +1,35 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# JavaScript
+node_modules/
+dist/
+.vite/
+
+# Python
+venv/
+.venv/
+.tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Model weights and generated artifacts
+*.pth
+uploads/
+reports/
+generated_reports/
+tmp/
+temp/
+backend/model_weights/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

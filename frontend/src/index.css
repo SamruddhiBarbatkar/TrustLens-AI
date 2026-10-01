@@ -1,0 +1,101 @@
+:root {
+  --color-canvas: #f5f8fc;
+  --color-canvas-raised: #edf3fa;
+  --color-surface: #ffffff;
+  --color-surface-raised: #fbfdff;
+  --color-surface-subtle: #e7f0fa;
+  --color-surface-selected: #e0ecff;
+  --color-text: #24344d;
+  --color-text-strong: #10223e;
+  --color-text-muted: #5c708d;
+  --color-text-disabled: #8fa0b7;
+  --color-border: #d6e1ee;
+  --color-border-strong: #aec4dc;
+  --color-border-interactive: #4f8fe8;
+  --color-primary: #5d55e8;
+  --color-primary-hover: #4941cf;
+  --color-primary-active: #3d35b4;
+  --color-primary-contrast: #ffffff;
+  --color-focus: #347fe1;
+  --color-focus-ring: rgb(52 127 225 / 0.22);
+  --color-accent-border: #93bae8;
+  --color-info-bg: #eaf4ff;
+  --color-info-border: #a9ccef;
+  --color-info-text: #2464ae;
+  --color-success-bg: #e9f8f0;
+  --color-success-border: #91d4b1;
+  --color-success-text: #13734f;
+  --color-warning-bg: #fff7e6;
+  --color-warning-border: #eac46d;
+  --color-warning-text: #9a6710;
+  --color-danger-bg: #fff0f3;
+  --color-danger-border: #f1a9b7;
+  --color-danger-text: #b42345;
+  --color-neutral-bg: #edf3fa;
+  --color-neutral-text: #466889;
+  --color-disabled-bg: #e1e9f3;
+  --color-panel-glow: rgb(83 151 235 / 0.12);
+  --color-violet-glow: rgb(93 85 232 / 0.16);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.5rem;
+  --shadow-sm: 0 1px 2px rgb(25 56 94 / 0.04), 0 8px 20px rgb(25 56 94 / 0.08);
+  --shadow-md: 0 1px 2px rgb(25 56 94 / 0.05), 0 16px 36px rgb(25 56 94 / 0.11);
+  --shadow-lg: 0 2px 5px rgb(25 56 94 / 0.07), 0 28px 58px rgb(25 56 94 / 0.15);
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --font-family-ui: "Geist", "Plus Jakarta Sans", "Avenir Next", "Segoe UI Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.75rem;
+  --line-height-body: 1.6;
+  --line-height-heading: 1.12;
+  font-family: var(--font-family-ui);
+  color: var(--color-text);
+  background: var(--color-canvas);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+body { min-width: 0; margin: 0; background: radial-gradient(circle at 92% -10%, var(--color-panel-glow), transparent 34rem), radial-gradient(circle at 2% 52%, var(--color-violet-glow), transparent 32rem), var(--color-canvas); }
+
+button,
+input,
+select,
+textarea { font: inherit; }
+
+button { max-width: 100%; touch-action: manipulation; }
+input,
+select,
+textarea { min-width: 0; }
+img,
+svg { display: block; max-width: 100%; }
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--color-focus-ring);
+}
+
+#root { min-height: 100svh; }
