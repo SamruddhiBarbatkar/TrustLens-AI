@@ -91,7 +91,7 @@ def collect_report_sections(analysis: AnalysisInDatabase) -> tuple[ReportSection
     return tuple(sections)
 
 
-def build_analysis_report(analysis: AnalysisInDatabase) -> bytes:
+def build_analysis_report(analysis: AnalysisInDatabase, generated_narrative: str | None = None) -> bytes:
     """Create a PDF from the saved, owner-scoped analysis record only."""
     report_title = analysis.report_title or "Comprehensive image-analysis report"
     buffer = BytesIO()
@@ -120,6 +120,11 @@ def build_analysis_report(analysis: AnalysisInDatabase) -> bytes:
         else:
             story.extend(Paragraph(escape(line), styles["body"]) for line in section.lines)
         story.append(Spacer(1, 0.05 * inch))
+
+    if generated_narrative:
+        story.append(Paragraph("AI-generated narrative", styles["heading"]))
+        story.append(Paragraph("Generated from saved server-returned facts; decision support, not proof.", styles["body"]))
+        story.append(Paragraph(escape(generated_narrative), styles["body"]))
 
     document.build(story, onFirstPage=_page_footer, onLaterPages=_page_footer)
     return buffer.getvalue()

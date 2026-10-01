@@ -6,6 +6,7 @@ from torch import nn
 from torchvision import models, transforms
 
 from app.schemas.tampering import TamperingPrediction
+from app.services.gradcam import GradCAMError, image_data_url, render_gradcam
 
 
 class TamperingModelUnavailableError(RuntimeError):
@@ -75,10 +76,15 @@ class TamperingDetector:
             raise TamperingModelUnavailableError("Tampering model is unavailable.")
 
         tensor = self.transform(image.convert("RGB")).unsqueeze(0).to(self._device)
-        with torch.inference_mode():
-            logits = self._model(tensor)
-            probabilities = torch.softmax(logits, dim=1)[0]
-            class_index = int(torch.argmax(probabilities).item())
+        try:
+            logits, heatmap = render_gradcam(self._model, self._model.layer4[-1], tensor, image)
+            gradcam_data_url = image_data_url(heatmap)
+        except GradCAMError:
+            with torch.inference_mode():
+                logits = self._model(tensor)
+            gradcam_data_url = None
+        probabilities = torch.softmax(logits, dim=1)[0]
+        class_index = int(torch.argmax(probabilities).item())
 
         return TamperingPrediction(
             class_index=class_index,
@@ -89,4 +95,5 @@ class TamperingDetector:
                 "random rotation, and tensor conversion transform. The notebook did not "
                 "provide a separate deterministic inference transform."
             ),
+            gradcam_data_url=gradcam_data_url,
         )

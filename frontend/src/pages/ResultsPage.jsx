@@ -81,6 +81,11 @@ function SignalCard({ children, name, signal, signalName }) {
   )
 }
 
+function GradCAMEvidence({ value }) {
+  if (typeof value !== 'string' || !value.startsWith('data:image/png;base64,')) return null
+  return <figure className="result-gradcam"><img alt="Grad-CAM regions influencing this model prediction" src={value} /><figcaption>Grad-CAM: regions influencing this model prediction. This is explanatory evidence, not proof or a tampering mask.</figcaption></figure>
+}
+
 function TamperingResult({ explanation, signal }) {
   const result = signal?.result ?? {}
   return (
@@ -89,6 +94,7 @@ function TamperingResult({ explanation, signal }) {
         <div><dt>Model signal</dt><dd>{typeof result.label === 'string' ? result.label : 'Not returned'}</dd></div>
         <div><dt>Top-class score</dt><dd>{formatPercent(result.top_class_softmax_score)}</dd></div>
       </dl>
+      <GradCAMEvidence value={result.gradcam_data_url} />
       {typeof result.preprocessing_note === 'string' && <p className="result-note">{result.preprocessing_note}</p>}
       <ExplanationDetail explanation={explanation} title="What this classification means" />
     </SignalCard>
@@ -103,6 +109,7 @@ function AIGenerationResult({ explanation, signal }) {
         <div><dt>Model signal</dt><dd>{typeof result.label === 'string' ? result.label : 'Not returned'}</dd></div>
         <div><dt>Top-class score</dt><dd>{formatPercent(result.top_class_softmax_score)}</dd></div>
       </dl>
+      <GradCAMEvidence value={result.gradcam_data_url} />
       {typeof result.preprocessing_note === 'string' && <p className="result-note">{result.preprocessing_note}</p>}
       <ExplanationDetail explanation={explanation} title="What this classification means" />
     </SignalCard>

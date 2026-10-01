@@ -17,6 +17,7 @@ from app.schemas.analysis import AnalysisHistoryResponse, AnalysisResponse, Repo
 from app.services.analysis import ImageAnalysisService
 from app.services.image_artifacts import ImageArtifactStore
 from app.services.reports import build_analysis_report
+from app.services.report_narrative import GrokReportNarrativeService
 
 
 router = APIRouter(prefix="/analyses", tags=["analyses"])
@@ -36,11 +37,15 @@ def _analysis_response(record: object) -> AnalysisResponse:
 
 
 @router.get("/{analysis_id}/report")
-async def download_report(analysis_id: str, current_user: Annotated[User, Depends(get_current_user)], repository: Annotated[AnalysisRepository, Depends(get_analysis_repository)]) -> Response:
+async def download_report(analysis_id: str, request: Request, current_user: Annotated[User, Depends(get_current_user)], repository: Annotated[AnalysisRepository, Depends(get_analysis_repository)]) -> Response:
     analysis = await repository.find_for_owner(analysis_id, current_user.id)
     if analysis is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Report is not available.")
-    return Response(build_analysis_report(analysis), media_type="application/pdf", headers={"Content-Disposition": f'attachment; filename="trustlens-{analysis.id}.pdf"'})
+    narrative = await asyncio.to_thread(
+        GrokReportNarrativeService(request.app.state.settings.xai_api_key, request.app.state.settings.xai_model).generate,
+        analysis,
+    )
+    return Response(build_analysis_report(analysis, narrative), media_type="application/pdf", headers={"Content-Disposition": f'attachment; filename="trustlens-{analysis.id}.pdf"'})
 
 
 @router.get("/{analysis_id}/source-image")

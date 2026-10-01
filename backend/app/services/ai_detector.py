@@ -6,6 +6,7 @@ from torch import nn
 from torchvision import models, transforms
 
 from app.schemas.ai_detection import AIGenerationPrediction
+from app.services.gradcam import GradCAMError, image_data_url, render_gradcam
 
 
 class AIDetectorModelUnavailableError(RuntimeError):
@@ -75,10 +76,15 @@ class AIGenerationDetector:
             raise AIDetectorModelUnavailableError("AI image detector is unavailable.")
 
         tensor = self.transform(image.convert("RGB")).unsqueeze(0).to(self._device)
-        with torch.inference_mode():
-            logits = self._model(tensor)
-            probabilities = torch.softmax(logits, dim=1)[0]
-            class_index = int(torch.argmax(probabilities).item())
+        try:
+            logits, heatmap = render_gradcam(self._model, self._model.features[-1], tensor, image)
+            gradcam_data_url = image_data_url(heatmap)
+        except GradCAMError:
+            with torch.inference_mode():
+                logits = self._model(tensor)
+            gradcam_data_url = None
+        probabilities = torch.softmax(logits, dim=1)[0]
+        class_index = int(torch.argmax(probabilities).item())
 
         return AIGenerationPrediction(
             class_index=class_index,
@@ -88,4 +94,5 @@ class AIGenerationDetector:
                 "Uses the training notebook's evaluation transform: resize to 224x224, "
                 "tensor conversion, and ImageNet mean/std normalization."
             ),
+            gradcam_data_url=gradcam_data_url,
         )

@@ -71,6 +71,8 @@ class Settings:
     easyocr_model_storage_path: Path
     easyocr_download_enabled: bool
     uploads_path: Path
+    xai_api_key: str | None
+    xai_model: str
 
     @classmethod
     def from_environment(cls, environ: Mapping[str, str] | None = None) -> "Settings":
@@ -119,6 +121,8 @@ class Settings:
         uploads_path = Path(
             values.get("TRUSTLENS_UPLOADS_PATH", str(default_uploads_path))
         ).expanduser()
+        xai_api_key = values.get("XAI_API_KEY", "").strip() or None
+        xai_model = values.get("TRUSTLENS_XAI_MODEL", "grok-4.7").strip() or "grok-4.7"
 
         if environment == "production":
             if _read_bool(values.get("TRUSTLENS_DEBUG", debug_default), "TRUSTLENS_DEBUG"):
@@ -154,4 +158,6 @@ class Settings:
                 "TRUSTLENS_EASYOCR_DOWNLOAD_ENABLED",
             ),
             uploads_path=uploads_path,
+            xai_api_key=xai_api_key,
+            xai_model=xai_model,
         )
