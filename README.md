@@ -27,7 +27,7 @@ Copy-Item .env.example .env
 
 Set a unique `JWT_SECRET_KEY` and `BOOTSTRAP_ADMIN_PASSWORD` in `backend/.env`.
 For MongoDB, set `DATABASE_BACKEND=mongodb` and provide either a local MongoDB
-connection string or an Atlas `MONGODB_URI`. Set `MONGODB_DATABASE=trustlens`.
+connection string or an Atlas `MONGODB_URI`. Set `MONGODB_DATABASE=trustlens_ai`.
 The backend checks the connection and creates indexes when it starts. MongoDB
 must be running or reachable before starting the API. No Alembic command is
 needed for MongoDB.
@@ -37,7 +37,7 @@ For Atlas, [create a cluster and database user](https://www.mongodb.com/docs/atl
 then choose **Connect → Drivers → Python** and copy its URI into the untracked
 `backend/.env` file. Replace the username and password placeholders there;
 [percent-encode special characters](https://www.mongodb.com/docs/atlas/troubleshoot-connection/)
-in URI credentials. Keep `MONGODB_DATABASE=trustlens`; the application creates
+in URI credentials. Keep `MONGODB_DATABASE=trustlens_ai`; the application creates
 its collections on first use. Test the connection from `backend` with:
 
 ```powershell
@@ -70,7 +70,8 @@ The existing `backend/.env` on a machine is not replaced automatically. To
 switch it, add `DATABASE_BACKEND=mongodb`, set the MongoDB URI and database,
 and restart the API. Existing SQLite claims do not appear in a new MongoDB
 database until they are copied. From `backend`, first preview the record
-counts, then copy into an **empty** MongoDB database:
+counts, then copy into a new MongoDB database. If a copy is interrupted, the
+same command resumes after checking that existing records match the source:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/migrate_sqlite_to_mongodb.py --sqlite sql_app.db

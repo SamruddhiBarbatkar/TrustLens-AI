@@ -38,7 +38,9 @@ def initialize_mongodb():
     db.users.create_index("email", unique=True)
     db.claims.create_index("claim_number", unique=True)
     db.claims.create_index("owner_id")
-    db.evidence.create_index([("claim_id", ASCENDING), ("evidence_type", ASCENDING)], unique=True)
+    # Legacy SQL records can contain multiple images of the same type. The API
+    # controls new uploads; keep the index non-unique to preserve old evidence.
+    db.evidence.create_index([("claim_id", ASCENDING), ("evidence_type", ASCENDING)])
     db.verification_runs.create_index("claim_id")
     db.analysis_results.create_index([("verification_run_id", ASCENDING), ("evidence_id", ASCENDING)])
     db.review_decisions.create_index("claim_id")

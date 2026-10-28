@@ -27,7 +27,7 @@ class MongoDatabaseTests(unittest.TestCase):
         self.database.users.create_index("email", unique=True)
         self.database.claims.create_index("claim_number", unique=True)
         self.database.evidence.create_index(
-            [("claim_id", 1), ("evidence_type", 1)], unique=True
+            [("claim_id", 1), ("evidence_type", 1)]
         )
         self.upload_directory = tempfile.TemporaryDirectory()
         self.original_upload_dir = settings.upload_dir
