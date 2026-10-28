@@ -1,0 +1,135 @@
+{
+  "created_at": "2026-10-28T11:54:29.278875+00:00",
+  "scope": "Exploratory checkpoint comparison on one external validation partition; no test predictions or policy activation.",
+  "sample_count": 60,
+  "candidates": {
+    "active_forensic_multiview": {
+      "observations": "C:\\Users\\Admin\\Desktop\\trustlens_MJ-1\\backend\\calibration\\sofake_external_validation_observations.csv",
+      "observations_sha256": "0b7b5dd2538b3add421d8527d386b34273e7c479bc5e8c5fe3fdd893cfbd5c82",
+      "branches": {
+        "AI_GENERATION": {
+          "model_version": "aigen-v2-multigen-candidate",
+          "model_sha256": "23b2a797f26a3f7d596ed247e7560bd5c4e2172c78a5abc0e30bb44e6d2cae4e",
+          "raw_validation_metrics": {
+            "auroc": 0.60875,
+            "expected_calibration_error": 0.28672543,
+            "brier_score": 0.2760882,
+            "balanced_accuracy": 0.5875,
+            "precision": 0.47058824,
+            "recall": 0.4,
+            "f1": 0.43243243
+          }
+        },
+        "TAMPERING_DETECTION": {
+          "model_version": "evidence-authenticity-v2-forensic-candidate-multiview-v1",
+          "model_sha256": "86f6f2a1fff52eed2883275d2c83a7edb48568e1aedf1b86372f75e77db7ec7d",
+          "raw_validation_metrics": {
+            "auroc": 0.5025,
+            "expected_calibration_error": 0.2422404,
+            "brier_score": 0.27978606,
+            "balanced_accuracy": 0.45,
+            "precision": 0.27272727,
+            "recall": 0.3,
+            "f1": 0.28571429
+          }
+        }
+      }
+    },
+    "resnet_shadow_tampering": {
+      "observations": "C:\\Users\\Admin\\Desktop\\trustlens_MJ-1\\backend\\calibration\\sofake_external_validation_resnet_observations.csv",
+      "observations_sha256": "fc7c65d6214559fa9c73f2fc1bf5c42a75b2526eedc7a21d7948939076865ddf",
+      "branches": {
+        "AI_GENERATION": {
+          "model_version": "aigen-v2-multigen-candidate",
+          "model_sha256": "23b2a797f26a3f7d596ed247e7560bd5c4e2172c78a5abc0e30bb44e6d2cae4e",
+          "raw_validation_metrics": {
+            "auroc": 0.60875,
+            "expected_calibration_error": 0.28672543,
+            "brier_score": 0.2760882,
+            "balanced_accuracy": 0.5875,
+            "precision": 0.47058824,
+            "recall": 0.4,
+            "f1": 0.43243243
+          }
+        },
+        "TAMPERING_DETECTION": {
+          "model_version": "tampering-v2-multisource-hardnegative-candidate",
+          "model_sha256": "f63af9ba634a4beba1cdd84d258c6109763e11a4936633938e03257a2ed1ad1a",
+          "raw_validation_metrics": {
+            "auroc": 0.44625,
+            "expected_calibration_error": 0.51707487,
+            "brier_score": 0.51636481,
+            "balanced_accuracy": 0.4875,
+            "precision": 0.32758621,
+            "recall": 0.95,
+            "f1": 0.48717949
+          }
+        }
+      }
+    },
+    "three_class_single_view_tampering": {
+      "observations": "C:\\Users\\Admin\\Desktop\\trustlens_MJ-1\\backend\\calibration\\sofake_external_validation_threeclass_observations.csv",
+      "observations_sha256": "634d671fb3965bb345c4984727a1d7a064ba2f9e17400c9e046289b95e64b35a",
+      "branches": {
+        "AI_GENERATION": {
+          "model_version": "aigen-v2-multigen-candidate",
+          "model_sha256": "23b2a797f26a3f7d596ed247e7560bd5c4e2172c78a5abc0e30bb44e6d2cae4e",
+          "raw_validation_metrics": {
+            "auroc": 0.60875,
+            "expected_calibration_error": 0.28672543,
+            "brier_score": 0.2760882,
+            "balanced_accuracy": 0.5875,
+            "precision": 0.47058824,
+            "recall": 0.4,
+            "f1": 0.43243243
+          }
+        },
+        "TAMPERING_DETECTION": {
+          "model_version": "evidence-authenticity-v1-three-class-candidate",
+          "model_sha256": "59b7d65f529a8ce92778d5b4c3a7a25039555ed1bcb304eb1c32fb168f6e497a",
+          "raw_validation_metrics": {
+            "auroc": 0.39875,
+            "expected_calibration_error": 0.31659345,
+            "brier_score": 0.33944925,
+            "balanced_accuracy": 0.4125,
+            "precision": 0.25,
+            "recall": 0.35,
+            "f1": 0.29166667
+          }
+        }
+      }
+    },
+    "shared_three_class_single_view": {
+      "observations": "C:\\Users\\Admin\\Desktop\\trustlens_MJ-1\\backend\\calibration\\sofake_external_validation_shared_threeclass_observations.csv",
+      "observations_sha256": "45471898003d563c6e14799f3438f30b4c32ed6c2989e61ab8b88fa88e3550d0",
+      "branches": {
+        "AI_GENERATION": {
+          "model_version": "evidence-authenticity-v1-three-class-candidate",
+          "model_sha256": "59b7d65f529a8ce92778d5b4c3a7a25039555ed1bcb304eb1c32fb168f6e497a",
+          "raw_validation_metrics": {
+            "auroc": 0.44125,
+            "expected_calibration_error": 0.35627995,
+            "brier_score": 0.36003012,
+            "balanced_accuracy": 0.35,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "TAMPERING_DETECTION": {
+          "model_version": "evidence-authenticity-v1-three-class-candidate",
+          "model_sha256": "59b7d65f529a8ce92778d5b4c3a7a25039555ed1bcb304eb1c32fb168f6e497a",
+          "raw_validation_metrics": {
+            "auroc": 0.39875,
+            "expected_calibration_error": 0.31659345,
+            "brier_score": 0.33944925,
+            "balanced_accuracy": 0.4125,
+            "precision": 0.25,
+            "recall": 0.35,
+            "f1": 0.29166667
+          }
+        }
+      }
+    }
+  }
+}

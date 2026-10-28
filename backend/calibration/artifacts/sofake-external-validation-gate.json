@@ -1,0 +1,89 @@
+{
+  "created_at": "2026-10-28T11:57:46.580210+00:00",
+  "status": "BLOCKED_BY_DOMAIN_SHIFT",
+  "active_policy": "ds-fusion-forensic-multiview-2.0",
+  "dataset": "saberzl/So-Fake-Set",
+  "delivery_format": "HUGGING_FACE_VIEWER_JPEG",
+  "delivery_limitation": "Viewer-transcoded JPEG previews may alter forensic compression traces.",
+  "observations_sha256": "0b7b5dd2538b3add421d8527d386b34273e7c479bc5e8c5fe3fdd893cfbd5c82",
+  "validation_samples": 60,
+  "test_samples_reserved": 60,
+  "test_inference_status": "NOT_RUN",
+  "readiness_requirements": {
+    "minimum_test_auroc": 0.7,
+    "maximum_test_ece": 0.15,
+    "minimum_reliability": 0.2
+  },
+  "detectors": {
+    "AI_GENERATION": {
+      "metrics": {
+        "count": 60,
+        "positive_count": 20,
+        "negative_count": 40,
+        "auroc": 0.60875,
+        "expected_calibration_error": 0.17359529,
+        "brier_score": 0.23944471,
+        "balanced_accuracy": 0.5875,
+        "precision": 0.47058824,
+        "recall": 0.4,
+        "f1": 0.43243243
+      },
+      "youden_reliability": 0.175,
+      "passed": false,
+      "failures": [
+        "AUROC below the existing readiness gate",
+        "Calibration error above the existing readiness gate",
+        "Held-out reliability below the existing readiness gate"
+      ]
+    },
+    "TAMPERING_DETECTION": {
+      "metrics": {
+        "count": 60,
+        "positive_count": 20,
+        "negative_count": 40,
+        "auroc": 0.5025,
+        "expected_calibration_error": 0.25627868,
+        "brier_score": 0.27210535,
+        "balanced_accuracy": 0.45,
+        "precision": 0.27272727,
+        "recall": 0.3,
+        "f1": 0.28571429
+      },
+      "youden_reliability": 0.0,
+      "passed": false,
+      "failures": [
+        "AUROC below the existing readiness gate",
+        "Calibration error above the existing readiness gate",
+        "Held-out reliability below the existing readiness gate"
+      ]
+    }
+  },
+  "active_policy_triage": {
+    "reason_counts": {
+      "manual_review_band": 42,
+      "fusion_uncertainty": 14,
+      "low_concern": 3,
+      "low_score_band": 1
+    },
+    "suspicious_marked_low_concern": {
+      "events": 3,
+      "total": 40,
+      "rate": 0.075,
+      "wilson_95_interval": [
+        0.025836,
+        0.198642
+      ]
+    },
+    "authentic_marked_low_concern": {
+      "events": 0,
+      "total": 20,
+      "rate": 0.0,
+      "wilson_95_interval": [
+        0.0,
+        0.161125
+      ]
+    }
+  },
+  "candidate_policy": null,
+  "decision": "Do not relax thresholds or promote a policy on this source. Improve detector generalization first; keep the reserved test partition unscored."
+}

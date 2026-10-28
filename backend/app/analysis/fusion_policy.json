@@ -1,0 +1,46 @@
+{
+  "policy_version": "ds-fusion-0.1-provisional",
+  "validated": false,
+  "calibration": {
+    "method": "IDENTITY_PROVISIONAL",
+    "artifact_version": null
+  },
+  "quality_reliability": {
+    "GOOD": 0.85,
+    "WARNING": 0.6,
+    "POOR": 0.35,
+    "UNKNOWN": 0.4
+  },
+  "conditional_branches": {
+    "ELA_SUPPORT": {
+      "enabled": false,
+      "validated": false,
+      "analysis_version": "ela-recompression-v1",
+      "feature": "ela_enhanced_mean",
+      "transform": {
+        "method": "LOGISTIC",
+        "center": null,
+        "scale": null
+      },
+      "temperature": 1.0,
+      "reliability_by_quality": {},
+      "visual_support_weight": 0.25
+    },
+    "OCR_CONSISTENCY": {
+      "enabled": false,
+      "validated": false,
+      "analysis_version": "ocr-cross-evidence-v1",
+      "temperature": 1.0,
+      "reliability_by_quality": {},
+      "minimum_comparisons": 1
+    }
+  },
+  "thresholds": {
+    "approve": 80.0,
+    "reject": 50.0,
+    "uncertainty_review": 35.0,
+    "conflict_review": 40.0,
+    "calibrated_branches": [],
+    "validated": false
+  }
+}

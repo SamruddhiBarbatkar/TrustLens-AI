@@ -1,0 +1,74 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+.artifact-venv/
+.python-runtime/
+.uv-cache/
+.chart-data-*/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Uploaded files
+# =========================
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/sql_app.db*
+*.sqlite
+*.sqlite3
+
+# Downloaded calibration media and generated observations
+backend/calibration/compact_data/
+backend/calibration/sofake_external_data/
+backend/calibration/document_domain_data/
+backend/calibration/*_data/
+backend/calibration/*.csv
+backend/calibration/document_domain_metadata.jsonl
+backend/calibration/*_provenance.json
+backend/calibration/compact_image_manifest.csv
+backend/calibration/compact_provenance.csv
+backend/calibration/compact_detector_observations.csv
+backend/training_outputs/*
+!backend/training_outputs/ai_detector_multigen_candidate.pth
+!backend/training_outputs/evidence_authenticity_forensic_multiview_candidate.pth
+!backend/training_outputs/ai_detector_multigen_report.json
+!backend/training_outputs/evidence_authenticity_forensic_multiview_report.json
+
+# =========================
+# Frontend
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+output/
+tmp/
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log

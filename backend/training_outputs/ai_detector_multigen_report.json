@@ -1,0 +1,164 @@
+{
+  "created_at": "2026-10-17T18:02:14.860319+00:00",
+  "dataset": "TheKernel01/Tiny-GenImage",
+  "dataset_split": "train",
+  "dataset_label_mapping": {
+    "real": 0,
+    "fake": 1
+  },
+  "checkpoint_label_mapping": {
+    "FAKE": 0,
+    "REAL": 1
+  },
+  "partition": {
+    "method": "shuffle-then-take-skip",
+    "seed": 2026,
+    "buffer_size": 4096,
+    "validation_start": 0,
+    "validation_count": 1200,
+    "train_start": 1200,
+    "train_count": 8000
+  },
+  "selection_metric": "validation_auroc",
+  "best_validation_auroc": 0.9985941945234708,
+  "history": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.556853561758995,
+        "accuracy": 0.7245,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.3922069756189982,
+        "accuracy": 0.8491666666666666,
+        "auroc": 0.9315239375889047,
+        "average_precision": 0.9340571813612318,
+        "expected_calibration_error": 0.06563471880440676,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.38172543478012083,
+        "accuracy": 0.85575,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.29774862647056577,
+        "accuracy": 0.9075,
+        "auroc": 0.9717421986130867,
+        "average_precision": 0.969407757181236,
+        "expected_calibration_error": 0.04812160630583092,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.28057981008291244,
+        "accuracy": 0.91975,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.23014729936917622,
+        "accuracy": 0.9508333333333333,
+        "auroc": 0.9887091038406828,
+        "average_precision": 0.9889495243559802,
+        "expected_calibration_error": 0.04532469830416329,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.2262548262476921,
+        "accuracy": 0.9515,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.2268002700805664,
+        "accuracy": 0.9525,
+        "auroc": 0.989567589793741,
+        "average_precision": 0.9870081743353434,
+        "expected_calibration_error": 0.02784155046673429,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.19936391961574554,
+        "accuracy": 0.96925,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.20838357051213582,
+        "accuracy": 0.9616666666666667,
+        "auroc": 0.9940517203058322,
+        "average_precision": 0.994397038850794,
+        "expected_calibration_error": 0.03116298530322638,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 6,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.17613823580741883,
+        "accuracy": 0.981625,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.18147631923357646,
+        "accuracy": 0.975,
+        "auroc": 0.9969994665718349,
+        "average_precision": 0.9967378750565757,
+        "expected_calibration_error": 0.029829130148070065,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 7,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.166195214509964,
+        "accuracy": 0.98475,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.17315839449564616,
+        "accuracy": 0.9816666666666667,
+        "auroc": 0.9978551742532006,
+        "average_precision": 0.9977211327416887,
+        "expected_calibration_error": 0.035389851948572554,
+        "count": 1200
+      }
+    },
+    {
+      "epoch": 8,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.1587329796552658,
+        "accuracy": 0.98825,
+        "count": 8000
+      },
+      "validation": {
+        "loss": 0.16614147543907165,
+        "accuracy": 0.9858333333333333,
+        "auroc": 0.9985941945234708,
+        "average_precision": 0.9985748389078437,
+        "expected_calibration_error": 0.033639779573659316,
+        "count": 1200
+      }
+    }
+  ],
+  "checkpoint": "/content/drive/MyDrive/TrustLens/trustlens_MJ-1/backend/training_outputs/ai_detector_multigen_candidate.pth",
+  "promotion_status": "CANDIDATE_REQUIRES_EXTERNAL_CALIBRATION"
+}

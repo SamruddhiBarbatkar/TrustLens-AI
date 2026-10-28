@@ -1,0 +1,207 @@
+{
+  "created_at": "2026-10-24T04:59:54.498785+00:00",
+  "architecture": "EfficientNet-B0",
+  "classes": {
+    "0": "AUTHENTIC",
+    "1": "TAMPERED",
+    "2": "SYNTHETIC"
+  },
+  "sources": {
+    "authentic_and_tampered": {
+      "dataset": "KhangTruong/Tampered-Images-Combined-Dataset",
+      "split": "cross_test"
+    },
+    "synthetic": {
+      "dataset": "TheKernel01/Tiny-GenImage",
+      "split": "train"
+    }
+  },
+  "partition": {
+    "method": "sha256-source-group-and-shuffle-take-skip",
+    "seed": 2026,
+    "validation_fraction": 0.18,
+    "train_per_class": 1600,
+    "validation_per_class": 300,
+    "excluded_evaluation_groups": 180,
+    "exclusion_provenance": [
+      "/content/backend/calibration/compact_provenance.csv",
+      "/content/backend/calibration/final_audit_provenance.csv"
+    ]
+  },
+  "selection_metric": "minimum_class_auroc",
+  "training_recipe": {
+    "augmentation_profile": "forensic",
+    "label_smoothing": 0.05,
+    "inference_candidate": "GLOBAL_PLUS_FIVE_PATCHES_MEAN_V1"
+  },
+  "best_validation_minimum_class_auroc": 0.8291611111111112,
+  "history": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.8203118880589803,
+        "accuracy": 0.6525,
+        "count": 4800
+      },
+      "validation": {
+        "loss": 0.7278334040111966,
+        "accuracy": 0.7122222222222222,
+        "minimum_class_auroc": 0.8226055555555556,
+        "macro_auroc": 0.8682462962962963,
+        "per_class": {
+          "AUTHENTIC": {
+            "auroc": 0.8415222222222223,
+            "average_precision": 0.714888452290181,
+            "expected_calibration_error": 0.0397040462020474
+          },
+          "TAMPERED": {
+            "auroc": 0.8226055555555556,
+            "average_precision": 0.7128846509024147,
+            "expected_calibration_error": 0.025984967024996877
+          },
+          "SYNTHETIC": {
+            "auroc": 0.9406111111111111,
+            "average_precision": 0.9085984327943067,
+            "expected_calibration_error": 0.04405669137964852
+          }
+        },
+        "count": 900
+      }
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.5825113934278489,
+        "accuracy": 0.7972916666666666,
+        "count": 4800
+      },
+      "validation": {
+        "loss": 0.7403336559401618,
+        "accuracy": 0.71,
+        "minimum_class_auroc": 0.8291611111111112,
+        "macro_auroc": 0.8710648148148149,
+        "per_class": {
+          "AUTHENTIC": {
+            "auroc": 0.8423722222222222,
+            "average_precision": 0.7126720109322373,
+            "expected_calibration_error": 0.054123653382476836
+          },
+          "TAMPERED": {
+            "auroc": 0.8291611111111112,
+            "average_precision": 0.7072659610862437,
+            "expected_calibration_error": 0.03992018888801492
+          },
+          "SYNTHETIC": {
+            "auroc": 0.9416611111111113,
+            "average_precision": 0.9140231291487438,
+            "expected_calibration_error": 0.04641929520146935
+          }
+        },
+        "count": 900
+      }
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.0002,
+      "train": {
+        "loss": 0.45474949340025583,
+        "accuracy": 0.8639583333333334,
+        "count": 4800
+      },
+      "validation": {
+        "loss": 0.7806883157624138,
+        "accuracy": 0.7111111111111111,
+        "minimum_class_auroc": 0.8273944444444445,
+        "macro_auroc": 0.8686481481481482,
+        "per_class": {
+          "AUTHENTIC": {
+            "auroc": 0.8367833333333333,
+            "average_precision": 0.7128773464594241,
+            "expected_calibration_error": 0.07569061370760512
+          },
+          "TAMPERED": {
+            "auroc": 0.8273944444444445,
+            "average_precision": 0.7000210930835865,
+            "expected_calibration_error": 0.07351873991946274
+          },
+          "SYNTHETIC": {
+            "auroc": 0.9417666666666668,
+            "average_precision": 0.9081634049688367,
+            "expected_calibration_error": 0.021067080781481826
+          }
+        },
+        "count": 900
+      }
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.0001,
+      "train": {
+        "loss": 0.3600023266673088,
+        "accuracy": 0.9227083333333334,
+        "count": 4800
+      },
+      "validation": {
+        "loss": 0.8376536197132535,
+        "accuracy": 0.7133333333333334,
+        "minimum_class_auroc": 0.82045,
+        "macro_auroc": 0.8613981481481482,
+        "per_class": {
+          "AUTHENTIC": {
+            "auroc": 0.8276333333333334,
+            "average_precision": 0.7083496259037573,
+            "expected_calibration_error": 0.0962196037234066
+          },
+          "TAMPERED": {
+            "auroc": 0.82045,
+            "average_precision": 0.6809537570367078,
+            "expected_calibration_error": 0.0994654068109311
+          },
+          "SYNTHETIC": {
+            "auroc": 0.936111111111111,
+            "average_precision": 0.8900700948622142,
+            "expected_calibration_error": 0.0340011601293736
+          }
+        },
+        "count": 900
+      }
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.0001,
+      "train": {
+        "loss": 0.29283819804588956,
+        "accuracy": 0.9541666666666667,
+        "count": 4800
+      },
+      "validation": {
+        "loss": 0.8619124420483907,
+        "accuracy": 0.7166666666666667,
+        "minimum_class_auroc": 0.8162444444444446,
+        "macro_auroc": 0.8601925925925927,
+        "per_class": {
+          "AUTHENTIC": {
+            "auroc": 0.8292166666666667,
+            "average_precision": 0.6976334106894584,
+            "expected_calibration_error": 0.10802871869521267
+          },
+          "TAMPERED": {
+            "auroc": 0.8162444444444446,
+            "average_precision": 0.6895459169243452,
+            "expected_calibration_error": 0.1089052129055118
+          },
+          "SYNTHETIC": {
+            "auroc": 0.9351166666666666,
+            "average_precision": 0.8880434263997172,
+            "expected_calibration_error": 0.029394667005698358
+          }
+        },
+        "count": 900
+      }
+    }
+  ],
+  "checkpoint": "/content/drive/MyDrive/TrustLens/trustlens_MJ-1/backend/training_outputs/evidence_authenticity_forensic_multiview_candidate.pth",
+  "promotion_status": "CANDIDATE_REQUIRES_EXTERNAL_CALIBRATION"
+}
