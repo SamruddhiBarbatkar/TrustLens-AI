@@ -1,6 +1,11 @@
 # Database migrations
 
-TrustLens uses SQLite by default for local and final-year-project demos.
+Alembic migrations apply to the SQLite backend only. New MongoDB installations
+use `DATABASE_BACKEND=mongodb`, `MONGODB_URI`, and `MONGODB_DATABASE`; the API
+creates MongoDB indexes on startup. See the root README for copying existing
+SQLite records to an empty MongoDB database.
+
+For SQLite, set `DATABASE_BACKEND=sqlite` and use these commands.
 
 Install the development tools from the backend directory:
 

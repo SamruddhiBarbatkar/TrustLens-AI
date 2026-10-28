@@ -1,12 +1,18 @@
-from sqlalchemy import create_engine, text
+"""Check the configured database connection from the backend directory."""
+
+from sqlalchemy import text
+
 from app.core.config import settings
 
 
-engine = create_engine(settings.database_url)
+if settings.database_backend == "mongodb":
+    from app.db.mongo_database import initialize_mongodb, mongo_database
 
+    initialize_mongodb()
+    print(f"Connected to MongoDB database: {mongo_database().name}")
+else:
+    from app.db.database import engine
 
-with engine.connect() as connection:
-    result = connection.execute(text("SELECT current_database()"))
-
-    print("Connected to database:")
-    print(result.scalar())
+    with engine.connect() as connection:
+        connection.execute(text("SELECT 1"))
+    print("Connected to SQLite database.")

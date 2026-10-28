@@ -10,6 +10,7 @@ venv/
 .venv/
 env/
 .artifact-venv/
+.mongo-venv/
 .python-runtime/
 .uv-cache/
 .chart-data-*/

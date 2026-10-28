@@ -366,7 +366,10 @@ def export_claim_report(db: Session = Depends(get_db)):
 
 @router.get("/system")
 def get_system_settings():
-    database_engine = settings.database_url.split(":", 1)[0]
+    database_engine = (
+        "mongodb" if settings.database_backend == "mongodb"
+        else settings.database_url.split(":", 1)[0]
+    )
     ai_model_ready = settings.ai_generation_candidate_path.is_file()
     authenticity_model_ready = (
         settings.evidence_authenticity_candidate_path.is_file()

@@ -9,7 +9,7 @@ fraud or authenticity.
 ## Project structure
 
 - `frontend/` — React and Vite claimant portal and administrator console.
-- `backend/` — FastAPI, SQLAlchemy, Alembic migrations, analysis pipeline, and
+- `backend/` — FastAPI, MongoDB or SQLite persistence, analysis pipeline, and
   model inference.
 - `backend/calibration/` — calibrated fusion policy, research notes, and
   validation reports.
@@ -26,10 +26,27 @@ Copy-Item .env.example .env
 ```
 
 Set a unique `JWT_SECRET_KEY` and `BOOTSTRAP_ADMIN_PASSWORD` in `backend/.env`.
-Then initialize the database and start the API:
+For MongoDB, set `DATABASE_BACKEND=mongodb` and provide either a local MongoDB
+connection string or an Atlas `MONGODB_URI`. Set `MONGODB_DATABASE=trustlens`.
+The backend checks the connection and creates indexes when it starts. MongoDB
+must be running or reachable before starting the API. No Alembic command is
+needed for MongoDB.
+
+For Atlas, [create a cluster and database user](https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/),
+[allow your current IP address](https://www.mongodb.com/docs/atlas/security/ip-access-list/),
+then choose **Connect → Drivers → Python** and copy its URI into the untracked
+`backend/.env` file. Replace the username and password placeholders there;
+[percent-encode special characters](https://www.mongodb.com/docs/atlas/troubleshoot-connection/)
+in URI credentials. Keep `MONGODB_DATABASE=trustlens`; the application creates
+its collections on first use. Test the connection from `backend` with:
 
 ```powershell
-.\.venv\Scripts\alembic.exe upgrade head
+.\.venv\Scripts\python.exe scripts/check_mongodb.py
+```
+
+Start the API:
+
+```powershell
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 8000
 ```
 
@@ -46,6 +63,24 @@ npm run dev
 
 Open <http://127.0.0.1:5173>. On Windows PowerShell systems that block
 `npm.ps1`, use `npm.cmd` in place of `npm`.
+
+### Existing SQLite data
+
+The existing `backend/.env` on a machine is not replaced automatically. To
+switch it, add `DATABASE_BACKEND=mongodb`, set the MongoDB URI and database,
+and restart the API. Existing SQLite claims do not appear in a new MongoDB
+database until they are copied. From `backend`, first preview the record
+counts, then copy into an **empty** MongoDB database:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/migrate_sqlite_to_mongodb.py --sqlite sql_app.db
+.\.venv\Scripts\python.exe scripts/migrate_sqlite_to_mongodb.py --sqlite sql_app.db --apply
+```
+
+Keep `sql_app.db` and `uploads/` as backups. MongoDB stores claim and evidence
+metadata; uploaded image files remain in `UPLOAD_DIR`. If you prefer SQLite,
+set `DATABASE_BACKEND=sqlite`, retain `DATABASE_URL`, and run
+`alembic upgrade head` before starting the API.
 
 ## Verification workflow
 

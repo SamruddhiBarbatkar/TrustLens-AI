@@ -9,7 +9,10 @@ BACKEND_DIR = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseSettings):
+    database_backend: Literal["sqlite", "mongodb"] = "sqlite"
     database_url: str = "sqlite:///./sql_app.db"
+    mongodb_uri: str = "mongodb://127.0.0.1:27017/"
+    mongodb_database: str = "trustlens"
     upload_dir: Path = Path("uploads")
     max_upload_bytes: int = 10 * 1024 * 1024
     upload_chunk_bytes: int = 1024 * 1024

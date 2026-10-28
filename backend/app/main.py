@@ -15,6 +15,10 @@ from app.api.admin import router as admin_router
 
 @asynccontextmanager
 async def lifespan(app):
+    if settings.database_backend == "mongodb":
+        from app.db.mongo_database import initialize_mongodb
+
+        initialize_mongodb()
     ensure_bootstrap_admin()
     yield
 
